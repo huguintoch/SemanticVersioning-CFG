@@ -1,8 +1,8 @@
-# CFG Arithmetic Expression Analyzer
+# CFG Semantic Versioning 2.0.0 Analyzer
 
-This is a simple contect-free grammar (CFG) project, that implements the CYK to verify arithmetic expressions.
-Grammar is defined inside in arithmeticCFG.txt. It can be replaced by any other, but it must be in Chomsky's Normal Form (CNF). 
-For current implementation, supported operators are: N (where N is any natural number), + , - , * , / , ( , )
+This is a simple context-free grammar (CFG) project, that implements the CYK to verify semantic versioning 2.0.0 expressions.
+Grammar is defined inside in semverCFG.txt. It can be replaced by any other, but it must be in Chomsky's Normal Form (CNF). 
+Official documentation for semantic versioning can be found here: https://semver.org/
 
 ## Installation (prerequisite)
 
@@ -12,11 +12,17 @@ To run the program you must install the following module [pip](https://pypi.org/
 pip install pptree
 ```
 
-## Usage
-To run the project just run:
+And for a nice CLI, install [pip](https://pypi.org/project/print-color/) to color debug.
 
 ```bash
-py CYK.py
+pip install print-color
+```
+
+## Usage
+To run the project just type:
+
+```bash
+py stxAnalyzer.py
 ```
 
 A CLI will guide you thorugh inputs requested.
@@ -25,4 +31,4 @@ A CLI will guide you thorugh inputs requested.
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## References
-CYK: https://github.com/mmheydari97/automata-cyk
+https://github.com/huguintoch/Arithmetic-CFG

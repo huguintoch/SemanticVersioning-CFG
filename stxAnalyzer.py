@@ -1,4 +1,5 @@
 from ppbtree import *
+from print_color import print
 
 class Node:
     def __init__(self, value, left, right=None):
@@ -41,17 +42,15 @@ def cyk(inputStr):
 
     # Return root node if S is in last cell
     for root in {s for s in table[len(inputStr)-1][0]}:
-        if(root.value == 'S'): 
-            print("\nThis is a valid arithmetic expression\n")
+        if(root.value == '■'): 
             return root
 
     # Return False otherwise
-    print("\nThis is NOT a valid arithmetic expression\n")
     return False 
 
 # Grammar builder
 def getProductionsFromGrammar():
-    with open("arithmeticCFG.txt") as cfg:
+    with open("semverCFG.txt", "r", encoding = "UTF-8") as cfg:
         prds = cfg.readlines()
         gen = []
         ter = []
@@ -81,19 +80,51 @@ def getCombinations(first, second):
 
 # MAIN #
 
-print(
-"""
--------------------------------------
+state = ""
+while (state != "3"):
 
-*Arithmetic expression CFG analyzer*
+    print(
+    """
+    -------------------------------------
 
-Valid symbols:
-  -> N , where N is a natural number
-  -> Operators: + , - , * , / , ( , ) 
+    *Semantic versioning 2.0.0 analyzer*
 
--------------------------------------
-"""
-)
-inputStr = input("Input an arithmetic expression: ")
-root = cyk(inputStr)
-if root : print_tree(root)
+    (1) Evaluate single version
+    (2) Evaluate multiple from file
+    (3) Exit
+
+    -------------------------------------
+
+    """,
+    color="cyan"
+    )
+
+    state = input("Choose an option: ")
+
+    if state == "1":
+        inputStr = input("\nInput version: ")
+        root = cyk(inputStr)
+        if root :
+            print("\nThis is a valid semantic version\n", color='green')
+            inputStr = input("Print derivation tree? (Y/N): ")
+            if inputStr in ['Y', 'y', 'yes', 'Yes'] : print_tree(root)
+        else :
+            print("\nThis is a NOT valid semantic version\n", color='red')
+    elif state == "2":
+        fileName = input("\nType file name to read from: ")
+        try:
+            versions = open(fileName)
+        except:
+            print("\nFile not found\n", color='magenta')
+        else:
+            print("\nEvaluating versions...\n")
+            for v in versions.read().splitlines():
+                root = cyk(v)
+                if (root) : 
+                    print(v, tag='✓', tag_color='green', color='white')
+                else : 
+                    print(v, tag='X', tag_color='red', color='white')
+    elif state == "3":
+        print("\nBye!\n", color='cyan')
+    else:
+        print("\nThis is not a valid option!\n", color='magenta')
