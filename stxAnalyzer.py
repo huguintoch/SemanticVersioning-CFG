@@ -119,11 +119,12 @@ while (state != "3"):
         else:
             print("\nEvaluating versions...\n")
             for v in versions.read().splitlines():
-                root = cyk(v)
-                if (root) : 
-                    print(v, tag='✓', tag_color='green', color='white')
-                else : 
-                    print(v, tag='X', tag_color='red', color='white')
+                if len(v) > 0 :
+                    root = cyk(v)
+                    if (root) : 
+                        print(v, tag='✓', tag_color='green', color='white')
+                    else : 
+                        print(v, tag='X', tag_color='red', color='white')
     elif state == "3":
         print("\nBye!\n", color='cyan')
     else:
