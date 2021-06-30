@@ -12,7 +12,7 @@ To run the program you must install the following module [pip](https://pypi.org/
 pip install pptree
 ```
 
-And for a nice CLI, install [pip](https://pypi.org/project/print-color/) to color debug.
+And for a nice CLI, install [print-color](https://pypi.org/project/print-color/) to color debug.
 
 ```bash
 pip install print-color
